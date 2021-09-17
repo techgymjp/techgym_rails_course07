@@ -1,0 +1,47 @@
+<h1><%= AdminUser.model_name.human %>管理</h1>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th><%= t AdminUser.human_attribute_name(:name) %></th>
+      <th><%= t AdminUser.human_attribute_name(:role) %></th>
+      <th><%= t AdminUser.human_attribute_name(:email) %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @admin_users.each do |admin_user| %>
+    <tr>
+      <td><%= admin_user.id %></td>
+
+      <td><%= admin_user.name %></td>
+
+      <td><%= admin_user.role_i18n %></td>
+
+      <td><%= admin_user.email %></td>
+
+      <td>
+        <%= link_to "表示", [:admin, admin_user], class: "btn btn-secondary" %>
+        <% if can? :update, admin_user %>
+        <%= link_to "編集", edit_admin_admin_user_path(admin_user), class: "btn btn-primary" %>
+        <% end %>
+
+        <% if can? :destroy, admin_user %>
+        <%= link_to "削除", [:admin, admin_user], method: :delete, class: "btn btn-danger", data: { confirm: "本当によろしいですか？" } %>
+        <% end %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= paginate @admin_users %>
+
+
+<% if can? :manage, @admin_users[0] %>
+<%= link_to "新規作成", new_admin_admin_user_path, class: "btn btn-success" %>
+<% end %>

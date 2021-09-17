@@ -1,0 +1,29 @@
+<h1><%= AdminUser.model_name.human %>情報 表示</h1>
+
+<table class="table table-striped">
+  <tbody>
+    <tr>
+      <td><%= t AdminUser.human_attribute_name(:name) %></td>
+
+      <td><%= @admin_user.name %></td>
+    </tr>
+    <tr>
+      <td><%= t AdminUser.human_attribute_name(:role) %></td>
+
+      <td><%= @admin_user.role %></td>
+    </tr>
+    <tr>
+      <td><%= t AdminUser.human_attribute_name(:email) %></td>
+
+      <td><%= @admin_user.email %></td>
+    </tr>
+    <tr>
+      <td><%= t AdminUser.human_attribute_name(:password) %></td>
+
+      <td><%= @admin_user.password %></td>
+    </tr>
+  </tbody>
+</table>
+
+<%= link_to "編集", edit_admin_admin_user_path(@admin_user), class: "btn btn-primary" %>
+<%= link_to "戻る", admin_admin_users_path, class: "btn btn-secondary" %>

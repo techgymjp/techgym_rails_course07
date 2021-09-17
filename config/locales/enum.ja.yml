@@ -1,0 +1,6 @@
+ja:
+  enums:
+    admin_user:
+      role:
+        owner: オーナー
+        staff: スタッフ

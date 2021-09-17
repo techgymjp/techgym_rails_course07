@@ -1,0 +1,69 @@
+ja:
+  activerecord:
+    models:
+      admin_user: 管理者  
+      category: カテゴリー  
+      product: 家具  
+      evaluation: レビュー
+      ckeditor/asset: Ckeditor /アセット  #g
+      ckeditor/attachment_file: Ckeditor /添付ファイル  #g
+      ckeditor/picture: Ckeditor /画像  #g
+
+    attributes:
+      admin_user:
+        email: Eメール  #g
+        name: 名前  #g
+        password: パスワード  #g
+        role: 役職  #g
+        product: 家具
+        encrypted_password: 暗号化パスワード  #g
+        remember_created_at: ログイン記憶時刻  #g
+        reset_password_sent_at: パスワードリセット送信時刻  #g
+        reset_password_token: パスワードリセット用トークン  #g
+
+      category:
+        name: 名前  #g
+        product: 家具
+
+      product:
+        admin_user: :activerecord.models.admin_user
+        origin: オリジナル
+        category: :activerecord.models.category
+        image: 画像
+        description: 説明  
+        title: タイトル  
+        category: :activerecord.models.category  #g
+        evaluations: レビュー  #g
+        copied_product: 類似家具  #g
+        image_attachment: :activerecord.models.image_attachment  #g
+        image_blob: :activerecord.models.image_blob  #g
+
+      evaluation:
+        body: レビュー内容
+        product: :activerecord.models.product  #g
+        rate: 評価
+        title: レビュータイトル
+
+      ckeditor/asset:
+        data_content_type: データコンテンツタイプ  #g
+        data_file_name: データファイル名  #g
+        data_file_size: データファイルのサイズ  #g
+        data_fingerprint: データフィンガープリント  #g
+        storage_data_attachment: :activerecord.models.storage_data_attachment  #g
+        storage_data_blob: :activerecord.models.storage_data_blob  #g
+
+      ckeditor/attachment_file:
+        data_content_type: データコンテンツタイプ  #g
+        data_file_name: データファイル名  #g
+        data_file_size: データファイルのサイズ  #g
+        data_fingerprint: データフィンガープリント  #g
+        storage_data_attachment: :activerecord.models.storage_data_attachment  #g
+        storage_data_blob: :activerecord.models.storage_data_blob  #g
+
+      ckeditor/picture:
+        data_content_type: データコンテンツタイプ  #g
+        data_file_name: データファイル名  #g
+        data_file_size: データファイルのサイズ  #g
+        data_fingerprint: データフィンガープリント  #g
+        storage_data_attachment: :activerecord.models.storage_data_attachment  #g
+        storage_data_blob: :activerecord.models.storage_data_blob  #g
