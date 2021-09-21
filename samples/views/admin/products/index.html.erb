@@ -1,0 +1,67 @@
+<h1 class="pb-2"><%= Product.model_name.human %>管理</h1>
+
+
+<%= search_form_for @search, url: admin_products_path, class: "search-form" do |f| %>
+<div class="d-flex col-md-8 col-lg-6 pb-4 pl-0">
+  <%= f.text_field :title_or_description_cont_any, placeholder: "カテゴリーかタイトルで検索", class: "form-control" %>
+  <%= f.submit "検索", name: nil, class: "btn btn-primary ml-2" %>
+</div>
+<% end %>
+
+
+<table class="table">
+  <thead>
+    <tr>
+      <%# lesson4で使用します。 %>
+      <%
+=begin
+%>
+      <th></th>
+      <%
+=end
+%>
+      <th>ID</th>
+      <th><%= t Product.human_attribute_name(:admin_user) %></th>
+      <th><%= t Product.human_attribute_name(:category) %></th>
+      <th><%= t Product.human_attribute_name(:title) %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+    <tr>
+      <%# lesson4で使用します。 %>
+      <%
+=begin
+%>
+      <td><%= resized_image_tag(product.image, size_name: :small) %> </td>
+      <%
+=end
+%>
+
+      <td><%= product.id %></td>
+
+      <% if product.admin_user.present? %>
+      <td><%= product.admin_user.name %></td>
+      <% end %>
+
+      <td><%= product.category.name %></td>
+
+      <td><%= product.title %></td>
+
+      <td>
+        <%= link_to "表示", [:admin, product], class: "btn btn-secondary" %>
+        <%= link_to "編集", edit_admin_product_path(product), class: "btn btn-primary" %>
+        <%= link_to "削除", [:admin, product], method: :delete, class: "btn btn-danger", data: { confirm: "本当によろしいですか？" } %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= paginate @products %>
+
+
+<%= link_to "新規作成", new_admin_product_path, class: "btn btn-success" %>

@@ -1,0 +1,30 @@
+<% evaluations.each do |evaluation| %>
+<div class="pb-5">
+  <% if evaluation.present? %>
+  <div class="d-flex justify-content-between pb-1">
+    <div>
+      <% evaluation.rate.times do |i| %>
+      <span class="fas fa-star fa-lg text-warning" id="star"></span>
+      <% end %>
+      <% (5 - evaluation.rate).times do |i| %>
+      <span class="far fa-star fa-lg text-warning" id="star"></span>
+      <% end %>
+    </div>
+    <div>
+      <small>
+        <time datetime="<%= evaluation.created_at %>" class="text-muted font-weight-light">
+          <%= evaluation.created_at.strftime("%Y/%-m/%-d") %>
+        </time>
+      </small>
+    </div>
+  </div>
+  <div class="pb-1">
+    <span class="font-weight-bold"><%= evaluation.title %></span>
+  </div>
+  <div class="pb-1">
+    <%= safe_join(evaluation.body.split("\r\n"), tag(:br)) %>
+  </div>
+  <%= link_to "削除", admin_product_evaluation_path(evaluation.product_id, evaluation.id), method: :delete, class: "btn btn-danger", data: { confirm: "本当によろしいですか？" } %>
+  <% end %>
+</div>
+<% end %>

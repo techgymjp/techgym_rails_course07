@@ -1,0 +1,41 @@
+<%= form_with(model: [product, evaluation], local: true) do |f| %>
+<div class="form-group row">
+  <div class="col-md-3">
+    <%= f.label :rate,'評価 ', class:'col-form-label' %>
+  </div>
+  <div class="rating-stars col-md-9 py-2">
+    <% 5.times do |num| %>
+    <span class="far fa-star fa-lg text-warning" id="star"></span>
+    <% end %>
+  </div>
+  <%= f.hidden_field :rate, id: "review_star" %>
+</div>
+
+<div class="form-group row">
+  <div class="col-md-3">
+    <%= f.label :title, 'タイトル ', class:'col-form-label' %>
+  </div>
+  <div class="col-md-9">
+    <%= f.text_field :title, class: "form-control",
+      placeholder: 'レビュータイトル' %>
+  </div>
+</div>
+
+<div class="form-group row">
+  <div class="col-md-3">
+    <%= f.label :body, 'レビュー内容 ', class:'col-form-label' %>
+  </div>
+  <div class="col-md-9">
+    <%= f.text_area :body, class: "form-control", rows: "8",
+      placeholder: 'レビュー内容' %>
+  </div>
+</div>
+
+<div class="form-group d-flex justify-content-end">
+  <%= button_tag type: "submit", class: "d-inline-block btn btn-success float-right mt-1" do %>
+  <i class="far fa-comment"></i> レビューする
+  <% end %>
+</div>
+<% end %>
+
+<%= javascript_include_tag "modules/stars-controller" %>

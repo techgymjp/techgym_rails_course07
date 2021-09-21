@@ -1,0 +1,78 @@
+<% if @new_evaluation.errors.any? %>
+<div class="alert alert-danger alert-dismissible">
+  <span class="h2"><%= @new_evaluation.errors.count %> つのエラーがあります。</span>
+
+  <ul>
+    <% @new_evaluation.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+
+<h1><%= @product.title %></h1>
+
+
+<div class="h4 d-inline-block pb-5">
+  <span class="fas fa-layer-group mr-2"></span>
+  <%= @product.category.name %>
+</div>
+
+
+<div class="pb-2">
+  <span>
+    <%= t Product.human_attribute_name(:admin_user) %>：<%= @product.admin_user.name %>
+  </span>
+</div>
+
+<%# lesson4で使用します。 %>
+<%
+=begin
+%>
+<div class="pb-5">
+  <div class="col-lg-10 pl-0">
+    <%= resized_image_tag(@product.image) %>
+  </div>
+</div>
+<%
+=end
+%>
+
+
+<div class="pb-5">
+  <p>
+    <%== @product.description %>
+  </p>
+</div>
+
+
+<%# lesson9で使用します。 %>
+<%
+=begin
+%>
+<h2 class="h4"><%= Product.human_attribute_name(:copied_product) %>一覧</h2>
+<div class="pb-5">
+  <%= render "product_card_list",
+    products: @product.similar_products %>
+</div>
+<%
+=end
+%>
+
+
+<%# lesson11で使用します。 %>
+<%
+=begin
+%>
+<div class="pb-5">
+  <%= render "evaluation_contents", evaluations: @product.evaluations.reorder(created_at: :desc) %>
+</div>
+<%
+=end
+%>
+
+
+<%= link_to "編集", edit_admin_product_path(@product), class: "btn btn-primary" %>
+<%= link_to "類似#{Product.model_name.human}作成", new_admin_product_copied_product_path(@product), class: "btn btn-primary" %>
+<%= link_to "戻る", admin_products_path, class: "btn btn-secondary" %>
