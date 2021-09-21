@@ -2,14 +2,14 @@
 AdminUser.new(
   name: '管理者 太郎',
   role: 'owner',
-  email: 'taro@example.co.jp',
+  email: 'taro@test.test',
   password: 'Taro01',
 ).save
 
 AdminUser.new(
   name: '管理者 次郎',
   role: 'staff',
-  email: 'jiro@example.co.jp',
+  email: 'jiro@test.test',
   password: 'Jiro01',
 ).save
 
