@@ -12,8 +12,8 @@
 <% end %>
 
 <div class="form-group">
-  <span><%= t Product.human_attribute_name(:admin_user) %>ID</span>
-  <%= f.number_field :admin_user_id, value: product.admin_user_id.present? ? product.admin_user_id : current_admin_admin_user.id, class: "form-control" %>
+  <%= f.label :admin_user_id %>
+  <%= f.select :admin_user_id, @admin_users.pluck(:name, :id), { include_blank: "--#{AdminUser.model_name.human}を選択して下さい--" }, { class: "form-control form-control-sm col-sm-4" } %>
 </div>
 
 <div class="form-group">
@@ -21,7 +21,7 @@
 </div>
 
 <div class="form-group">
-  <%= f.label Category.model_name.human %>
+  <%= f.label :category_id %>
   <%= f.select :category_id, @categories.pluck(:name, :id), { include_blank: "--#{Category.model_name.human}を選択して下さい--" }, { class: "form-control form-control-sm col-sm-4" } %>
 </div>
 
