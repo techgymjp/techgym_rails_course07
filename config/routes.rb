@@ -1,10 +1,4 @@
 Rails.application.routes.draw do
-  # root 'products#index'
-
-  resources :categories, only: [] do
-    resources :products, only: [:index]
-  end
-
   namespace :admin do
     devise_for :admin_users,
                only: [:sessions],
