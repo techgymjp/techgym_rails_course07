@@ -12,8 +12,12 @@
 <% end %>
 
 <div class="form-group">
-  <%= t Product.human_attribute_name(:admin_user_id) %>
-  <%= f.number_field :admin_user_id, value: copied_product.admin_user_id.present? ? copied_product.admin_user_id : current_admin_admin_user.id, class: "form-control" %>
+  <%= f.label :admin_user_id %>
+  <%= f.select :admin_user_id,
+    @admin_users.pluck(:name, :id),
+    { selected: current_admin_admin_user.id },
+    { class: "form-control form-control-sm col-sm-4" }
+  %>
 </div>
 
 <%= f.hidden_field :category_id, value: copied_product.category_id %>

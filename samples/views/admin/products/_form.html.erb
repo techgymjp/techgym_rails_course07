@@ -13,16 +13,24 @@
 
 <div class="form-group">
   <%= f.label :admin_user_id %>
-  <%= f.select :admin_user_id, @admin_users.pluck(:name, :id), { include_blank: "--#{AdminUser.model_name.human}を選択して下さい--" }, { class: "form-control form-control-sm col-sm-4" } %>
-</div>
-
-<div class="form-group">
-  <%= f.file_field :image %>
+  <%= f.select :admin_user_id,
+    @admin_users.pluck(:name, :id),
+    { selected: current_admin_admin_user.id },
+    { class: "form-control form-control-sm col-sm-4" }
+  %>
 </div>
 
 <div class="form-group">
   <%= f.label :category_id %>
-  <%= f.select :category_id, @categories.pluck(:name, :id), { include_blank: "--#{Category.model_name.human}を選択して下さい--" }, { class: "form-control form-control-sm col-sm-4" } %>
+  <%= f.select :category_id,
+    @categories.pluck(:name, :id),
+    { include_blank: "--#{Category.model_name.human}を選択して下さい--" },
+    { class: "form-control form-control-sm col-sm-4" }
+  %>
+</div>
+
+<div class="form-group">
+  <%= f.file_field :image %>
 </div>
 
 <div class="form-group">
