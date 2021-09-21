@@ -1,3 +1,7 @@
+<%# lesson11で使用します。 %>
+<%
+=begin
+%>
 <% if @new_evaluation.errors.any? %>
 <div class="alert alert-danger alert-dismissible">
   <span class="h2"><%= @new_evaluation.errors.count %> つのエラーがあります。</span>
@@ -9,6 +13,9 @@
   </ul>
 </div>
 <% end %>
+<%
+=end
+%>
 
 
 <h1><%= @product.title %></h1>
@@ -22,7 +29,7 @@
 
 <div class="pb-2">
   <span>
-    <%= t Product.human_attribute_name(:admin_user) %>：<%= @product.admin_user.name %>
+    <%= t Product.human_attribute_name(:admin_user_id) %>：<%= @product.admin_user.name %>
   </span>
 </div>
 
@@ -74,5 +81,12 @@
 
 
 <%= link_to "編集", edit_admin_product_path(@product), class: "btn btn-primary" %>
+<%# lesson8で使用します。 %>
+<%
+=begin
+%>
 <%= link_to "類似#{Product.model_name.human}作成", new_admin_product_copied_product_path(@product), class: "btn btn-primary" %>
+<%
+=end
+%>
 <%= link_to "戻る", admin_products_path, class: "btn btn-secondary" %>

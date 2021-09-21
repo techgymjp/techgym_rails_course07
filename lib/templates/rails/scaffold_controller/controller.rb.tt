@@ -33,6 +33,11 @@ class <%= controller_class_name %>Controller < <%= super_path %>
 
   def create
     @<%= singular_name %> = <%= orm_class.build(singular_name.camelize, "#{singular_name}_params") %>
+<% attributes.each do |attribute| -%>
+<% if attribute.type == :references -%>
+    @<%= attribute.name.pluralize %> = <%= attribute.name.camelize %>.all
+<% end -%>
+<% end -%>
 
     if @<%= singular_name %>.save
       redirect_to [:<%= class_path[0] %>, @<%= singular_name %>], notice: "#{<%= singular_name.camelize %>.model_name.human}の作成に成功しました。"

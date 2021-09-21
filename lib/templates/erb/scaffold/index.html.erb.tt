@@ -19,6 +19,8 @@
 
 <% if attribute.type == :enum -%>
         <td><%%= <%= singular_name %>.<%= attribute.name %>_i18n %></td>
+<% elsif attribute.type == :references -%>
+        <td><%%= <%= singular_name %>.<%= attribute.name %>.name %></td>
 <% else %>
         <td><%%= <%= singular_name %>.<%= attribute.name %> %></td>
 <% end %>
