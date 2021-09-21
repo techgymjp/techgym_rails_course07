@@ -1,0 +1,46 @@
+<h1><%= Product.model_name.human %>管理</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>ID</th>
+      <th><%= t Product.human_attribute_name(:admin_user_id) %></th>
+      <th><%= t Product.human_attribute_name(:category_id) %></th>
+      <th><%= t Product.human_attribute_name(:title) %></th>
+      <th><%= t Product.human_attribute_name(:description) %></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @products.each do |product| %>
+      <tr>
+        <td><%= product.id %></td>
+
+        <td><%= product.admin_user.name %></td>
+
+
+        <td><%= product.category.name %></td>
+
+
+
+        <td><%= product.title %></td>
+
+
+
+        <td><%= product.description %></td>
+
+        <td>
+          <%= link_to '表示', [:admin, product], class: "btn btn-secondary" %>
+          <%= link_to '編集', edit_admin_product_path(product), class: "btn btn-primary" %>
+          <%= link_to '削除', [:admin, product], method: :delete, class: "btn btn-danger", data: { confirm: '本当によろしいですか？' } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= paginate @products %>
+
+
+<%= link_to '新規作成', new_admin_product_path, class: "btn btn-success" %>

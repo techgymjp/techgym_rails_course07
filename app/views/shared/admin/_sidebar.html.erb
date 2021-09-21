@@ -8,9 +8,9 @@
       <% end %>
     </li>
     <li class="mb-3 text-center">
-      <%= link_to "#" do %>
+      <%= link_to admin_products_path do %>
       <div class="d-inline-block text-left">
-        <i class="fas fa-chair mr-2"></i>家具
+        <i class="fas fa-chair mr-2"></i><%= Product.model_name.human %>
       </div>
       <% end %>
     </li>
