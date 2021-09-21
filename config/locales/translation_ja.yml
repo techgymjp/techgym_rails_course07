@@ -26,13 +26,12 @@ ja:
         product: 家具
 
       product:
-        admin_user: :activerecord.models.admin_user
-        origin: オリジナル
-        category: :activerecord.models.category
+        admin_user_id: :activerecord.models.admin_user
+        origin_id: オリジナル
+        category_id: :activerecord.models.category
         image: 画像
         description: 説明  
         title: タイトル  
-        category: :activerecord.models.category  #g
         evaluations: レビュー  #g
         copied_product: 類似家具  #g
         image_attachment: :activerecord.models.image_attachment  #g
@@ -40,7 +39,7 @@ ja:
 
       evaluation:
         body: レビュー内容
-        product: :activerecord.models.product  #g
+        product_id: :activerecord.models.product  #g
         rate: 評価
         title: レビュータイトル
 
