@@ -28,6 +28,11 @@
       <%%= f.label :<%= attribute.column_name %> %>
       <%%= f.select :<%= attribute.column_name %>, <%= singular_name.camelize %>.<%= attribute.column_name.pluralize %>_i18n.invert, {}, class: "form-control" %>
     </div>
+<% elsif attribute.type == :references -%>
+    <div class="form-group">
+      <%%= f.label :<%= attribute.column_name %> %>
+      <%%= f.select :<%= attribute.column_name %>, @<%= attribute.name.pluralize %>.pluck(:name, :id), { include_blank: "--#{<%= attribute.name.camelize %>.model_name.human}を選択して下さい--" }, { class: "form-control form-control-sm col-sm-4" } %>
+    </div>
 <% else -%>
     <div class="form-group">
       <%%= f.label :<%= attribute.column_name %> %>

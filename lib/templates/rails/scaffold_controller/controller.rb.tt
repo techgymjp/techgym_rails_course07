@@ -8,7 +8,7 @@ class <%= controller_class_name %>Controller < <%= super_path %>
   before_action :set_<%= singular_name %>, only: [:show, :edit, :update, :destroy]
 
   def index
-    @<%= plural_name %> = <%= singular_name.camelize %>.page(params[:page]).per(10)
+    @<%= plural_name %> = <%= singular_name.camelize %>.page(params[:page])
   end
 
   def show
@@ -16,9 +16,19 @@ class <%= controller_class_name %>Controller < <%= super_path %>
 
   def new
     @<%= singular_name %> = <%= orm_class.build(singular_name.camelize) %>
+<% attributes.each do |attribute| -%>
+<% if attribute.type == :references -%>
+    @<%= attribute.name.pluralize %> = <%= attribute.name.camelize %>.all
+<% end -%>
+<% end -%>
   end
 
   def edit
+<% attributes.each do |attribute| -%>
+<% if attribute.type == :references -%>
+    @<%= attribute.name.pluralize %> = <%= attribute.name.camelize %>.all
+<% end -%>
+<% end -%>
   end
 
   def create
