@@ -14,9 +14,11 @@
 </div>
 
 
-<% if @product.image.attached? %>
-<%= image_tag @product.image %>
-<% end %>
+<div class="pb-5">
+  <div class="col-lg-10 pl-0">
+    <%= resized_image_tag(@product.image) %>
+  </div>
+</div>
 
 
 <div class="pb-5">

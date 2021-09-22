@@ -3,6 +3,7 @@
 <table class="table">
   <thead>
     <tr>
+      <th></th>
       <th>ID</th>
       <th><%= Product.human_attribute_name(:admin_user_id) %></th>
       <th><%= Product.human_attribute_name(:category_id) %></th>
@@ -15,6 +16,8 @@
   <tbody>
     <% @products.each do |product| %>
     <tr>
+      <td><%= resized_image_tag(product.image, size_name: :small) %> </td>
+
       <td><%= product.id %></td>
 
       <td><%= product.admin_user.name %></td>
@@ -22,8 +25,6 @@
       <td><%= product.category.name %></td>
 
       <td><%= product.title %></td>
-
-      <td><%= product.description %></td>
 
       <td>
         <%= link_to '表示', [:admin, product], class: "btn btn-secondary" %>
