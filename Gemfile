@@ -22,6 +22,7 @@ gem 'kaminari-bootstrap', '~> 3.0', '>= 3.0.1'
 gem 'pg', '~> 1.2', '>= 1.2.3'
 gem 'puma', '~> 5.4'
 gem 'rails', '~> 5.2.6'
+gem 'ransack', '~> 2.4', '>= 2.4.2'
 gem 'sass-rails', '~> 6.0'
 gem 'uglifier', '~> 4.2'
 

@@ -4,7 +4,8 @@ class Admin::ProductsController < AdminController
   before_action :set_categories, only: [:new, :edit, :create, :update]
 
   def index
-    @products = Product.page(params[:page])
+    @search = Product.ransack(search_params)
+    @products = @search.result.page(params[:page])
   end
 
   def show
@@ -59,5 +60,12 @@ class Admin::ProductsController < AdminController
 >>>>>>> 家具画像保存・表示機能追加
   def product_params
     params.require(:product).permit(:admin_user_id, :category_id, :title, :description, :image)
+  end
+
+  def search_params
+    return nil if params[:q].nil?
+    q = params.require(:q).permit(:title_or_description_cont_any)
+    q[:title_or_description_cont_any] = q[:title_or_description_cont_any].split(/[ 　]/)
+    return q
   end
 end
