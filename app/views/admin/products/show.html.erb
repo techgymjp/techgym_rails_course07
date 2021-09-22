@@ -1,31 +1,30 @@
-<h1><%= Product.model_name.human %>情報 表示</h1>
+<h1><%= @product.title %></h1>
 
 
-<table class="table table-striped">
-  <tbody>
-    <tr>
-      <td><%= Product.human_attribute_name(:admin_user_id) %></td>
+<div class="h4 d-inline-block pb-5">
+  <span class="fas fa-layer-group mr-2"></span>
+  <%= @product.category.name %>
+</div>
 
-      <td><%= @product.admin_user_id %></td>
-    </tr>
-    <tr>
-      <td><%= Product.human_attribute_name(:category_id) %></td>
 
-      <td><%= @product.category_id %></td>
-    </tr>
-    <tr>
-      <td><%= Product.human_attribute_name(:title) %></td>
+<div class="pb-2">
+  <span>
+    <%= t Product.human_attribute_name(:admin_user_id) %>：<%= @product.admin_user.name %>
+  </span>
+</div>
 
-      <td><%= @product.title %></td>
 
-    </tr>
-    <tr>
-      <td><%= Product.human_attribute_name(:description) %></td>
+<% if @product.image.attached? %>
+<%= image_tag @product.image %>
+<% end %>
 
-      <td><%= @product.description %></td>
-    </tr>
-  </tbody>
-</table>
 
-<%= link_to '編集', edit_admin_product_path(@product), class: "btn btn-primary" %>
-<%= link_to '戻る', admin_products_path, class: "btn btn-secondary" %>
+<div class="pb-5">
+  <p>
+    <%== @product.description %>
+  </p>
+</div>
+
+
+<%= link_to "編集", edit_admin_product_path(@product), class: "btn btn-primary" %>
+<%= link_to "戻る", admin_products_path, class: "btn btn-secondary" %>
