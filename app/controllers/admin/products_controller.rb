@@ -46,6 +46,7 @@ class Admin::ProductsController < AdminController
     @product = Product.find(params[:id])
   end
 
+<<<<<<< HEAD
   def set_admin_users
     @admin_users = AdminUser.all
   end
@@ -54,6 +55,8 @@ class Admin::ProductsController < AdminController
     @categories = Category.all
   end
 
+=======
+>>>>>>> 家具画像保存・表示機能追加
   def product_params
     params.require(:product).permit(:admin_user_id, :category_id, :title, :description, :image)
   end
