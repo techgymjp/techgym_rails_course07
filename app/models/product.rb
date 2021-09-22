@@ -10,4 +10,28 @@ class Product < ApplicationRecord
   validates :title,
             presence: true,
             length: { maximum: 20 }
+
+  validate :image_size,
+           :image_type
+
+  private
+
+  def image_size
+    return if !image.attached?
+
+    if image.byte_size > 10.megabytes
+      image.purge
+      errors.add(:image, 'ファイルのサイズは10MB以内にしてください')
+    end
+  end
+
+  def image_type
+    return if !image.attached?
+    allowed_types = %w( image/jpeg image/jpg image/png )
+
+    if !image.content_type.in?(allowed_types)
+      image.purge
+      errors.add(:image, 'ファイルはjpeg、jpg、pngのいずれかの形式で添付してください')
+    end
+  end
 end
