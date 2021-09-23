@@ -12,6 +12,8 @@ Rails.application.routes.draw do
       resources :products, only: [:index]
     end
 
-    resources :products
+    resources :products do
+      resources :copied_products, only: [:new, :create], module: 'products'
+    end
   end
 end

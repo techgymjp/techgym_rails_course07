@@ -1,0 +1,4 @@
+<h1><%= Product.human_attribute_name(:copied_product) %>新規作成</h1>
+
+<%= render "form", copied_product: @copied_product %>
+<%= link_to "戻る", admin_products_path, class: "btn btn-secondary" %>
