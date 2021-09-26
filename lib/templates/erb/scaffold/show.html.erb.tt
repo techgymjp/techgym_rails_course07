@@ -3,18 +3,19 @@
 
 <table class="table table-striped">
   <tbody>
-<% attributes.reject(&:password_digest?).each do |attribute| -%>
-   <tr>
-      <td><%%= t <%= singular_name.camelize %>.human_attribute_name(:<%= attribute.column_name %>) %></td>
-<% if attribute.type == :enum -%>
+  <%- attributes.reject(&:password_digest?).each do |attribute| -%>
+    <tr>
+      <td><%%= <%= singular_name.camelize %>.human_attribute_name(:<%= attribute.column_name %>) %></td>
+    <% if attribute.type == :enum %>
       <td><%%= @<%= singular_name %>.<%= attribute.column_name %>_i18n %></td>
-<% else %>
+    <% else %>
       <td><%%= @<%= singular_name %>.<%= attribute.column_name %> %></td>
-<% end %>
+    <%- end -%>
     </tr>
-<% end -%>
+  <%- end -%>
   </tbody>
 </table>
+
 
 <%%= link_to '編集', edit_<%= singular_table_name %>_path(@<%= singular_name %>), class: "btn btn-primary" %>
 <%%= link_to '戻る', <%= index_helper %>_path, class: "btn btn-secondary" %>
