@@ -1,5 +1,7 @@
 class Admin::ProductsController < AdminController
   before_action :set_product, only: [:show, :edit, :update, :destroy]
+  before_action :set_admin_users, only: [:new, :edit, :create, :update]
+  before_action :set_categories, only: [:new, :edit, :create, :update]
 
   def index
     @products = Product.page(params[:page])
@@ -10,19 +12,13 @@ class Admin::ProductsController < AdminController
 
   def new
     @product = Product.new
-    @admin_users = AdminUser.all
-    @categories = Category.all
   end
 
   def edit
-    @admin_users = AdminUser.all
-    @categories = Category.all
   end
 
   def create
     @product = Product.new(product_params)
-    @admin_users = AdminUser.all
-    @categories = Category.all
 
     if @product.save
       redirect_to [:admin, @product], notice: "#{Product.model_name.human}の作成に成功しました。"
@@ -45,11 +41,20 @@ class Admin::ProductsController < AdminController
   end
 
   private
-    def set_product
-      @product = Product.find(params[:id])
-    end
 
-    def product_params
-      params.require(:product).permit(:admin_user_id, :category_id, :title, :description)
-    end
+  def set_product
+    @product = Product.find(params[:id])
+  end
+
+  def set_admin_users
+    @admin_users = AdminUser.all
+  end
+
+  def set_categories
+    @categories = Category.all
+  end
+
+  def product_params
+    params.require(:product).permit(:admin_user_id, :category_id, :title, :description)
+  end
 end
