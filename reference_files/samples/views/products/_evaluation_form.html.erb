@@ -5,7 +5,7 @@
   </div>
   <div class="rating-stars col-md-9 py-2">
     <% 5.times do |num| %>
-    <span class="far fa-star fa-lg text-warning" id="star"></span>
+    <span class="far fa-star fa-lg text-warning" id=<%= "star_#{num}" %> %></span>
     <% end %>
   </div>
   <%= f.hidden_field :rate, id: "review_star" %>
