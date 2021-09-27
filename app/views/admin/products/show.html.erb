@@ -28,6 +28,13 @@
 </div>
 
 
+<h2 class="h4"><%= Product.human_attribute_name(:copied_product) %>一覧</h2>
+<div class="pb-5">
+  <%= render "product_card_list",
+    products: @product.to_similar_products %>
+</div>
+
+
 <%= link_to "編集", edit_admin_product_path(@product), class: "btn btn-primary" %>
 <%= link_to "複製", new_admin_product_copied_product_path(@product), class: "btn btn-primary" %>
 <%= link_to "戻る", admin_products_path, class: "btn btn-secondary" %>

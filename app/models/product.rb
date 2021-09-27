@@ -22,6 +22,14 @@ class Product < ApplicationRecord
   validate :image_size,
            :image_type
 
+  scope :similar_products,
+        ->(id, origin_id) { where('id != ? and (id = ? or origin_id = ?)', id, origin_id, origin_id) }
+
+  def to_similar_products
+    _origin_id = origin_id || id
+    Product.similar_products(id, _origin_id)
+  end
+
   private
 
   def deny_copied_product_to_have_product
