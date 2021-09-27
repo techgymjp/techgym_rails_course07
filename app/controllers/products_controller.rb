@@ -7,6 +7,7 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find(params[:id])
+    @new_evaluation = @product.evaluations.new
   end
 
   private

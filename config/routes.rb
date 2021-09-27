@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
   root 'products#index'
 
-  resources :products, only: [:index, :show]
+  resources :products, only: [:index, :show] do
+    resources :evaluations, only: [:create]
+  end
 
   namespace :admin do
     devise_for :admin_users,
@@ -18,6 +20,8 @@ Rails.application.routes.draw do
 
     resources :products do
       resources :copied_products, only: [:new, :create], module: 'products'
+
+      resources :evaluations, only: [:destroy]
     end
   end
 end

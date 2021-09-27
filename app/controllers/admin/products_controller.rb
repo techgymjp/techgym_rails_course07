@@ -9,6 +9,8 @@ class Admin::ProductsController < AdminController
   end
 
   def show
+    @evaluations = @product.evaluations.reorder(created_at: :desc)
+    @new_evaluation = @product.evaluations.new
   end
 
   def new

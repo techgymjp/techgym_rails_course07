@@ -10,6 +10,8 @@ class Product < ApplicationRecord
            dependent: :destroy,
            class_name: 'Product',
            foreign_key: 'origin_id'
+  has_many :evaluations,
+           dependent: :destroy
 
   validates :description,
             presence: true,

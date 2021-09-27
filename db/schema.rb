@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_23_055258) do
+ActiveRecord::Schema.define(version: 2021_09_27_063547) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -57,6 +57,16 @@ ActiveRecord::Schema.define(version: 2021_09_23_055258) do
     t.index ["name"], name: "index_categories_on_name", unique: true
   end
 
+  create_table "evaluations", force: :cascade do |t|
+    t.bigint "product_id"
+    t.integer "rate", null: false
+    t.text "title", null: false
+    t.text "body", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["product_id"], name: "index_evaluations_on_product_id"
+  end
+
   create_table "products", force: :cascade do |t|
     t.bigint "admin_user_id"
     t.bigint "category_id"
@@ -70,6 +80,7 @@ ActiveRecord::Schema.define(version: 2021_09_23_055258) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "evaluations", "products"
   add_foreign_key "products", "admin_users"
   add_foreign_key "products", "categories"
   add_foreign_key "products", "products", column: "origin_id"

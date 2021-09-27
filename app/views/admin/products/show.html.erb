@@ -1,3 +1,16 @@
+<% if @new_evaluation.errors.any? %>
+<div class="alert alert-danger alert-dismissible">
+  <span class="h2"><%= @new_evaluation.errors.count %> つのエラーがあります。</span>
+
+  <ul>
+    <% @new_evaluation.errors.full_messages.each do |message| %>
+    <li><%= message %></li>
+    <% end %>
+  </ul>
+</div>
+<% end %>
+
+
 <h1><%= @product.title %></h1>
 
 
@@ -32,6 +45,11 @@
 <div class="pb-5">
   <%= render "product_card_list",
     products: @product.to_similar_products %>
+</div>
+
+
+<div class="pb-5">
+  <%= render "evaluation_contents", evaluations: @product.evaluations.reorder(created_at: :desc) %>
 </div>
 
 
