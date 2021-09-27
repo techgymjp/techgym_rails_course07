@@ -61,7 +61,7 @@
 <h2 class="h4"><%= Product.human_attribute_name(:copied_product) %>一覧</h2>
 <div class="pb-5">
   <%= render "product_card_list",
-    products: @product.similar_products %>
+    products: @product.to_similar_products %>
 </div>
 <%
 =end
