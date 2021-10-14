@@ -11,8 +11,6 @@ class Product < ApplicationRecord
            class_name: 'Product',
            foreign_key: 'origin_id'
 
-  has_one_attached :image
-
   validates :description,
             presence: true,
             length: { maximum: 1000 }
