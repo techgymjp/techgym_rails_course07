@@ -29,5 +29,5 @@
 
 
 <%= link_to "編集", edit_admin_product_path(@product), class: "btn btn-primary" %>
-<%= link_to "類似#{Product.model_name.human}作成", new_admin_product_copied_product_path(@product), class: "btn btn-primary" %>
+<%= link_to "複製", new_admin_product_copied_product_path(@product), class: "btn btn-primary" %>
 <%= link_to "戻る", admin_products_path, class: "btn btn-secondary" %>

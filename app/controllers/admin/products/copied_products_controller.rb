@@ -17,7 +17,7 @@ class Admin::Products::CopiedProductsController < AdminController
     @copied_product = @origin_product.copied_product.new(copied_product_params)
 
     if @copied_product.save
-      redirect_to [:admin, @copied_product], notice: "類似#{Product.model_name.human}の作成に成功しました。"
+      redirect_to [:admin, @copied_product], notice: "#{Product.model_name.human}の複製に成功しました。"
     else
       render :new
     end
