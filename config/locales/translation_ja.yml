@@ -33,7 +33,7 @@ ja:
         description: 説明  
         title: タイトル  
         evaluations: レビュー  #g
-        copied_product: 類似家具  #g
+        copied_product: 複製家具  #g
         image_attachment: :activerecord.models.image_attachment  #g
         image_blob: :activerecord.models.image_blob  #g
 
