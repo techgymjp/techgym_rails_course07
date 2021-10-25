@@ -30,12 +30,12 @@ class Admin::Products::CopiedProductsController < AdminController
   end
 
   def set_origin_product
-    tmp_origin_product = Product.find(set_request_product_id)
+    _origin_product = Product.find(set_request_product_id)
 
-    if tmp_origin_product.origin_id.present?
-      @origin_product = Product.find(tmp_origin_product.origin_id)
+    if _origin_product.origin_id.present?
+      @origin_product = Product.find(_origin_product.origin_id)
     else
-      @origin_product = tmp_origin_product
+      @origin_product = _origin_product
     end
   end
 
