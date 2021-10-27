@@ -99,14 +99,33 @@ $ bundle exec rails db:migrate
 $ touch config/storage.yml
 ```  
   
+```  
+local:
+  service: Disk
+  root: <%= Rails.root.join("storage") %>
+
+```  
+  
+```  
+config.active_storage.service = :local
+```  
+  
 ### 9 - 4 ：画像をトリミングしよう  
 【手順】  
+```  
+gem 'image_processing', '~> 1.2'
+```  
+  
 ```  
 $ bundle install --path vendor/bundle
 ```  
   
-### 9 - 5 ：高水準なエディターで家具の説明欄を作ろう  
+### 9 - 5 ：リッチテキストエディタを導入しよう  
 【手順】  
+```  
+gem 'ckeditor', '~> 5.1'
+```  
+  
 ```  
 $ bundle install --path vendor/bundle
 ```  
@@ -115,16 +134,42 @@ $ bundle install --path vendor/bundle
 $ touch config/initializers/ckeditor.rb
 ```  
   
+```  
+Ckeditor.setup do |config|
+  config.cdn_url = "//cdn.ckeditor.com/4.6.1/standard/ckeditor.js"
+end
+```  
+  
+```  
+<%= javascript_include_tag Ckeditor.cdn_url %>
+```  
+  
+```  
+<%= f.cktext_area :description, class: "form-control", ckeditor: { language: "ja" } %>
+```  
+  
+```  
+<%== @product.description %>
+```  
+  
 ### 9 - 6 ：家具情報を検索できるようにしよう  
 【手順】  
+```  
+gem 'ransack', '~> 2.4', '>= 2.4.2'
+```  
+  
 ```  
 $ bundle install --path vendor/bundle
 ```  
   
-### 9 - 7 ：既存の家具の類似品を保存できるようにしよう  
+### 9 - 7 ：家具を複製できるようにしよう  
 【手順】  
 ```  
 $ bundle exec rails generate migration AddOriginIdToProducts origin_id:bigint
+```  
+  
+```  
+add_foreign_key :products, :products, column: :origin_id
 ```  
   
 ```  
@@ -160,7 +205,7 @@ $ bundle exec rails console
 > copied_product_2.errors.full_messages
 ```  
   
-### 9 - 8 ：類似品の新規作成画面を作ろう  
+### 9 - 8 ：家具の複製ページを作ろう  
 【手順】  
 ```  
 $ bundle exec rails generate controller admin/products/copied_products
@@ -168,6 +213,15 @@ $ bundle exec rails generate controller admin/products/copied_products
   
 ### 9 - 10 ：ユーザーが閲覧するページを作成しよう  
 【手順】  
+
+```
+$ bundle exec rails generate controller products
+```  
+  
+```
+resources :products, only: [:index, :show]
+```  
+  
 ```
 $ mv reference_files/lesson10_pages/*.html app/views/products/
 ```  
@@ -175,3 +229,30 @@ $ mv reference_files/lesson10_pages/*.html app/views/products/
 ```
 $ rm app/views/products/index.html.erb app/views/products/show.html.erb
 ```
+  
+### 9 - 11 ：レビューを投稿できるようにしよう  
+【手順】  
+```
+$ bundle exec rails generate model evaluation product:references rate:integer title:string body:text
+```  
+  
+```
+$ bundle exec rails db:migrate
+```  
+  
+```
+$ bundle exec rails generate controller admin/evaluation
+```  
+  
+```
+$ bundle exec rails generate controller evaluation
+```  
+  
+```
+$ rm -r app/views/admin/evaluation
+```  
+  
+```
+$ rm -r app/views/evaluation
+```  
+  
