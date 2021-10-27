@@ -1,45 +1,34 @@
 $(function() {
-  const total_stars = 5;
-  let hidden_rate = $("#review_star");
-  for(i = 0; i < total_stars; i++) {
-    $(`#star_${i}`).mouseover(function () { 
-      const id_num = Number($(this).attr('id').match(/\d/i)[0]);
-      for(j = 0; j < total_stars; j++) {
-        $(`#star_${j}`).removeClass("fas fa-star");
-        $(`#star_${j}`).addClass("far fa-star");
-      }
+  const TOTAL_STARS = 5;
+  const stars = $(".rating-stars");
+  const hidden_field = $("#review_star");
 
-      for(j = 0; j <= id_num; j++) {
-        $(`#star_${j}`).removeClass("far fa-star");
-        $(`#star_${j}`).addClass("fas fa-star");
-      }
-    });
-
-    $(`#star_${i}`).click(function () { 
-      const id_num = Number($(this).attr('id').match(/\d/i)[0]);
-      for(j = 0; j < total_stars; j++) {
-        $(`#star_${j}`).removeClass("fas fa-star");
-        $(`#star_${j}`).addClass("far fa-star");
-      }
-
-      for(j = 0; j <= id_num; j++) {
-        $(`#star_${j}`).removeClass("far fa-star");
-        $(`#star_${j}`).addClass("fas fa-star");
-      }
-
-      hidden_rate.val(id_num + 1);
-    });
-
-    $(`#star_${i}`).mouseout(function () { 
-      for(j = 0; j < total_stars; j++) {
-        $(`#star_${j}`).removeClass("fas fa-star");
-        $(`#star_${j}`).addClass("far fa-star");
-      }
-
-      for(j = 0; j < hidden_rate.val(); j++) {
-        $(`#star_${j}`).removeClass("far fa-star");
-        $(`#star_${j}`).addClass("fas fa-star");
-      }
-    });
+  function changeStarsCSSClass (star_num, rm_class, add_class) {
+    for(i = 0; i < star_num; i++) {
+      $(`#star_${i}`).removeClass(rm_class);
+      $(`#star_${i}`).addClass(add_class);
+    };
   };
+
+  function paintStars (rate_num) {
+    changeStarsCSSClass(TOTAL_STARS, "fas fa-star", "far fa-star");
+    changeStarsCSSClass(rate_num, "far fa-star", "fas fa-star");
+  };
+
+  stars.mouseover(function () { 
+    const rate_num = Number($(this).attr('id').match(/\d/i)[0]) + 1;
+
+    paintStars(rate_num);
+  });
+
+  stars.click(function () { 
+    const rate_num = Number($(this).attr('id').match(/\d/i)[0]) + 1;
+
+    paintStars(rate_num);
+    hidden_field.val(rate_num);
+  });
+
+  stars.mouseout(function () { 
+    paintStars(hidden_field.val());
+  });
 });
