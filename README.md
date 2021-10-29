@@ -88,6 +88,10 @@ $ bundle exec rails generate scaffold_controller admin/product admin_user:refere
 ### 9 - 2 ：家具の画像を保存して表示しよう  
 【手順】  
 ```  
+$ sudo yum -y install ImageMagick ImageMagick-deve
+```  
+  
+```  
 $ bundle exec rails active_storage:install
 ```  
   
@@ -219,6 +223,8 @@ $ bundle exec rails generate controller products
 ```  
   
 ```
+root 'products#index'
+
 resources :products, only: [:index, :show]
 ```  
   
