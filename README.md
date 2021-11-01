@@ -247,18 +247,18 @@ $ bundle exec rails db:migrate
 ```  
   
 ```
-$ bundle exec rails generate controller admin/evaluation
+$ bundle exec rails generate controller admin/evaluations
 ```  
   
 ```
-$ bundle exec rails generate controller evaluation
+$ bundle exec rails generate controller evaluations
 ```  
   
 ```
-$ rm -r app/views/admin/evaluation
+$ rm -r app/views/admin/evaluations
 ```  
   
 ```
-$ rm -r app/views/evaluation
+$ rm -r app/views/evaluations
 ```  
   
