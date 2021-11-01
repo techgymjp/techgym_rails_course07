@@ -85,6 +85,10 @@ $ bundle exec rails db:migrate
 $ bundle exec rails generate scaffold_controller admin/product admin_user:references category:references title:string description:text
 ```  
   
+```  
+resources :products
+```  
+  
 ### 9 - 2 ：家具の画像を保存して表示しよう  
 【手順】  
 ```  
