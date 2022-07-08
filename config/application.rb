@@ -15,7 +15,7 @@ require 'action_cable/engine'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-module TechgymRailsCourse09
+module TechgymRailsCourse07
   class Application < Rails::Application
     config.i18n.default_locale = :ja
     # Initialize configuration defaults for originally generated Rails version.
